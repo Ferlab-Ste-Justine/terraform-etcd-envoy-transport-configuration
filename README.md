@@ -35,6 +35,9 @@ This will be good enough as long as your configuration is not updated more than 
       - **interval**: Interval at which healtch check connections should be attempted. Should be in golang duration format.
       - **healthy_threshold**: How many successful connection requests on a healthy host are required before the host is deemed healthy.
       - **unhealthy_threshold**: How many failed connection requests on an unhealthy host are required before the host is deemed unhealthy.
+    - **tls_termination**: Configure service with tls termination using certificate/key files relative to envoy's execution path.
+      **listener_certificate**: Path of the certificate to present to clients
+      **listener_key**: Path of the private key to present to clients
   - **dns_servers**: Array of dns servers that the load balancer will use to discover upstread hosts based on their domain. Each entry has the following keys:
     - **ip**: Ip address of the dns server
     - **port**: Port the dns server listens on

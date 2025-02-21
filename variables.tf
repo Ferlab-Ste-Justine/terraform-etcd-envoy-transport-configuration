@@ -17,7 +17,6 @@ variable "load_balancer" {
       listening_port         = number
       cluster_domain         = string
       cluster_port           = number
-      cluster_ca_certificate = string
       idle_timeout           = string
       max_connections        = number
       access_log_format      = string
@@ -28,8 +27,9 @@ variable "load_balancer" {
         unhealthy_threshold = number
       })
       tls_termination        = object({
-        listener_certificate = string
-        listener_key         = string
+        listener_certificate   = string
+        listener_key           = string
+        cluster_ca_certificate = string
       })
     }))
     dns_servers = list(object({

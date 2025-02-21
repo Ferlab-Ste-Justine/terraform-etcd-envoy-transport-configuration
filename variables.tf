@@ -12,21 +12,22 @@ variable "load_balancer" {
   description = "Load balancer configs"
   type = object({
     services = list(object({
-      name              = string
-      listening_ip      = string
-      listening_port    = number
-      cluster_domain    = string
-      cluster_port      = number
-      idle_timeout      = string
-      max_connections   = number
-      access_log_format = string
-      health_check      = object({
+      name                   = string
+      listening_ip           = string
+      listening_port         = number
+      cluster_domain         = string
+      cluster_port           = number
+      cluster_ca_certificate = string
+      idle_timeout           = string
+      max_connections        = number
+      access_log_format      = string
+      health_check           = object({
         timeout             = string
         interval            = string
         healthy_threshold   = number
         unhealthy_threshold = number
       })
-      tls_termination   = object({
+      tls_termination        = object({
         listener_certificate = string
         listener_key         = string
       })

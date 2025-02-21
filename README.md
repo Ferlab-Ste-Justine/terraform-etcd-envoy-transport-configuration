@@ -26,6 +26,7 @@ This will be good enough as long as your configuration is not updated more than 
     - **listening_ip**: Ip the load balancer should bind on to forward requests for the service.
     - **listening_port**: Port the load balancer should listen on to forward requests for the service.
     - **cluster_domain**: Domain the load balancer should use to resolve upstream hosts to forward requests to for the service.
+    - **cluster_ca_certificate**: Path to an optional CA certificate validate the backend cluster's server certificate with.
     - **cluster_port**: Port the load balancer should forward service requests to on the upstream hosts.
     - **idle_timeout**: Amount of time the load balancer should wait before closing an idle connection on the service. Should be in golang duration format.
     - **idle_timeout**: Maximum number of concurrent connections the load balancer should accept to forward for the service.

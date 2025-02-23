@@ -38,7 +38,9 @@ This will be good enough as long as your configuration is not updated more than 
     - **tls_termination**: Configure service with tls termination using certificate/key files relative to envoy's execution path.
       - **listener_certificate**: Path of the certificate to present to clients
       - **listener_key**: Path of the private key to present to clients
-      - **cluster_ca_certificate**: Path to an optional CA certificate validate the backend cluster's server certificate with if the connect on the backend is over tls.
+      - **cluster_ca_certificate**: Path to an optional CA certificate validate the backend cluster's server certificate with if the connection on the backend is over tls.
+      - **cluster_client_key**: Path to an optional client private key if the connection on the backend is over tls.
+      - **cluster_client_certificate**: Path to an optional client certificate if the connection on the backend is over tls.
   - **dns_servers**: Array of dns servers that the load balancer will use to discover upstread hosts based on their domain. Each entry has the following keys:
     - **ip**: Ip address of the dns server
     - **port**: Port the dns server listens on

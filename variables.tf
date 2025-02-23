@@ -27,9 +27,11 @@ variable "load_balancer" {
         unhealthy_threshold = number
       })
       tls_termination        = object({
-        listener_certificate   = string
-        listener_key           = string
-        cluster_ca_certificate = string
+        listener_certificate       = string
+        listener_key               = string
+        cluster_ca_certificate     = string
+        cluster_client_key         = string
+        cluster_client_certificate = string
       })
     }))
     dns_servers = list(object({

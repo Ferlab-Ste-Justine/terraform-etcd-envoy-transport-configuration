@@ -32,6 +32,7 @@ variable "load_balancer" {
         cluster_ca_certificate     = string
         cluster_client_key         = string
         cluster_client_certificate = string
+        use_http_listener          = string
       })
     }))
     dns_servers = list(object({

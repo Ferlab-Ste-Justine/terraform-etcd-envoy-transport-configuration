@@ -41,6 +41,7 @@ This will be good enough as long as your configuration is not updated more than 
       - **cluster_ca_certificate**: Path to an optional CA certificate validate the backend cluster's server certificate with if the connection on the backend is over tls.
       - **cluster_client_key**: Path to an optional client private key if the connection on the backend is over tls.
       - **cluster_client_certificate**: Path to an optional client certificate if the connection on the backend is over tls.
+      - **use_http_listener**: Boolean value to optionally use a L7 http listener.
   - **dns_servers**: Array of dns servers that the load balancer will use to discover upstread hosts based on their domain. Each entry has the following keys:
     - **ip**: Ip address of the dns server
     - **port**: Port the dns server listens on

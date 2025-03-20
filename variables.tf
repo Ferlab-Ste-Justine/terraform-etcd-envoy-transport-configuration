@@ -17,14 +17,14 @@ variable "load_balancer" {
       listening_port         = number
       cluster_domain         = string
       cluster_port           = number
-      idle_timeout           = string
-      max_connections        = number
+      idle_timeout           = optional(string, "600s")
+      max_connections        = optional(number, 200)
       access_log_format      = string
       health_check           = object({
-        timeout             = string
-        interval            = string
-        healthy_threshold   = number
-        unhealthy_threshold = number
+        timeout             = optional(string, "3s")
+        interval            = optional(string, "3s")
+        healthy_threshold   = optional(number, 1)
+        unhealthy_threshold = optional(number, 2)
       })
       tls_termination        = object({
         listener_certificate       = string
@@ -32,7 +32,14 @@ variable "load_balancer" {
         cluster_ca_certificate     = string
         cluster_client_key         = string
         cluster_client_certificate = string
-        use_http_listener          = bool
+        use_http_listener          = optional(bool, false)
+        http_parameters            = optional(object({
+          server_name            = string
+          max_concurrent_streams = number
+        }), {
+          server_name            = "envoy"
+          max_concurrent_streams = 2147483647
+        })
       })
     }))
     dns_servers = list(object({

@@ -42,6 +42,9 @@ This will be good enough as long as your configuration is not updated more than 
       - **cluster_client_key**: Path to an optional client private key if the connection on the backend is over tls.
       - **cluster_client_certificate**: Path to an optional client certificate if the connection on the backend is over tls.
       - **use_http_listener**: Boolean value to optionally use a L7 http listener.
+      - **http_parameters**: Optional http parameters if using an http listener. It has the following keys:
+        - **server_name**: Server name to return on http requests.
+        - **max_concurrent_streams**: Maximum number of streams to allow per peer for clients using http/2.
   - **dns_servers**: Array of dns servers that the load balancer will use to discover upstread hosts based on their domain. Each entry has the following keys:
     - **ip**: Ip address of the dns server
     - **port**: Port the dns server listens on

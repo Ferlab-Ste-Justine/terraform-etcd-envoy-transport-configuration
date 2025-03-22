@@ -45,6 +45,10 @@ This will be good enough as long as your configuration is not updated more than 
       - **http_parameters**: Optional http parameters if using an http listener. It has the following keys:
         - **server_name**: Server name to return on http requests.
         - **max_concurrent_streams**: Maximum number of streams to allow per peer for clients using http/2.
+        - **request_headers_timeout**: The maximum amount of time envoy will wait for all headers to be received once the initial byte is sent.
+        - **use_remote_address**: Whether envoy should append to the **x-forwarded-for** header with the client ip. Should be set to true when setting up an edge load balancer.
+        - **initial_connection_window_size**: Window size (in bytes) allocated to a new http/2 connection. Should be set to conservatively small amount for edge load balancer.
+        - **initial_stream_window_size**: Window size (in bytes) allocated to a new http/2 stream. Should be set to conservatively small amount for edge load balancer.
   - **dns_servers**: Array of dns servers that the load balancer will use to discover upstread hosts based on their domain. Each entry has the following keys:
     - **ip**: Ip address of the dns server
     - **port**: Port the dns server listens on

@@ -34,11 +34,19 @@ variable "load_balancer" {
         cluster_client_certificate = string
         use_http_listener          = optional(bool, false)
         http_parameters            = optional(object({
-          server_name            = string
-          max_concurrent_streams = number
+          server_name                    = string
+          max_concurrent_streams         = number
+          request_headers_timeout        = string
+          use_remote_address             = bool
+          initial_connection_window_size = number
+          initial_stream_window_size     = number 
         }), {
-          server_name            = "envoy"
-          max_concurrent_streams = 2147483647
+          server_name                    = "envoy"
+          max_concurrent_streams         = 128
+          request_headers_timeout        = "10s"
+          use_remote_address             = true
+          initial_connection_window_size = 1048576
+          initial_stream_window_size     = 65536
         })
       })
     }))

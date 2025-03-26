@@ -25,6 +25,14 @@ variable "load_balancer" {
         interval            = optional(string, "3s")
         healthy_threshold   = optional(number, 1)
         unhealthy_threshold = optional(number, 2)
+        http                = object({
+          enabled           = optional(bool, false)
+          path              = optional(string, "/")
+          status_code_range = object({
+            first = optional(number, 200)
+            last  = optional(number, 200)
+          })
+        })
       })
       tls_termination        = object({
         listener_certificate       = string
@@ -32,21 +40,14 @@ variable "load_balancer" {
         cluster_ca_certificate     = string
         cluster_client_key         = string
         cluster_client_certificate = string
-        use_http_listener          = optional(bool, false)
-        http_parameters            = optional(object({
-          server_name                    = string
-          max_concurrent_streams         = number
-          request_headers_timeout        = string
-          use_remote_address             = bool
-          initial_connection_window_size = number
-          initial_stream_window_size     = number 
-        }), {
-          server_name                    = "envoy"
-          max_concurrent_streams         = 128
-          request_headers_timeout        = "10s"
-          use_remote_address             = true
-          initial_connection_window_size = 1048576
-          initial_stream_window_size     = 65536
+        http_listener            = object({
+          enabled                        = optional(bool, false)
+          server_name                    = optional(string, "envoy")
+          max_concurrent_streams         = optional(number, 128)
+          request_headers_timeout        = optional(string, "10s")
+          use_remote_address             = optional(bool, true)
+          initial_connection_window_size = optional(number, 1048576)
+          initial_stream_window_size     = optional(number, 65536) 
         })
       })
     }))

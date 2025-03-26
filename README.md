@@ -35,14 +35,20 @@ This will be good enough as long as your configuration is not updated more than 
       - **interval**: Interval at which healtch check connections should be attempted. Should be in golang duration format.
       - **healthy_threshold**: How many successful connection requests on a healthy host are required before the host is deemed healthy.
       - **unhealthy_threshold**: How many failed connection requests on an unhealthy host are required before the host is deemed unhealthy.
+      - **http**: Parameters to performan an http healthcheck instead of a tcp check
+        - **enabled**: If true, the healthcheck will be with http
+        - **path**: Path of the healthcheck http requests
+        - **status_code_range**: Range of acceptable response status codes
+          - **first**: First acceptable response status code in the range
+          - **last**: Last acceptable response status code in the range
     - **tls_termination**: Configure service with tls termination using certificate/key files relative to envoy's execution path.
       - **listener_certificate**: Path of the certificate to present to clients
       - **listener_key**: Path of the private key to present to clients
       - **cluster_ca_certificate**: Path to an optional CA certificate validate the backend cluster's server certificate with if the connection on the backend is over tls.
       - **cluster_client_key**: Path to an optional client private key if the connection on the backend is over tls.
-      - **cluster_client_certificate**: Path to an optional client certificate if the connection on the backend is over tls.
-      - **use_http_listener**: Boolean value to optionally use a L7 http listener.
-      - **http_parameters**: Optional http parameters if using an http listener. It has the following keys:
+      - **cluster_client_certificate**: Path to an optional client certificate if the connection on the backend is over tls. 
+      - **http_listener**: Parameters if using an optional http listener. It has the following keys:
+        - **enabled**: Boolean value to optionally use a L7 http listener.
         - **server_name**: Server name to return on http requests.
         - **max_concurrent_streams**: Maximum number of streams to allow per peer for clients using http/2.
         - **request_headers_timeout**: The maximum amount of time envoy will wait for all headers to be received once the initial byte is sent.

@@ -35,7 +35,10 @@ variable "load_balancer" {
         }), {
           enabled           = false
           path              = ""
-          status_code_range = []
+          status_code_range = {
+            start = 200
+            end  = 200
+          }
         })
       })
       tls_termination        = object({

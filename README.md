@@ -39,8 +39,8 @@ This will be good enough as long as your configuration is not updated more than 
         - **enabled**: If true, the healthcheck will be with http
         - **path**: Path of the healthcheck http requests
         - **status_code_range**: Range of acceptable response status codes
-          - **first**: First acceptable response status code in the range
-          - **last**: Last acceptable response status code in the range
+          - **start**: First acceptable response status code in the range
+          - **end**: Last acceptable response status code in the range
     - **tls_termination**: Configure service with tls termination using certificate/key files relative to envoy's execution path.
       - **listener_certificate**: Path of the certificate to present to clients
       - **listener_key**: Path of the private key to present to clients

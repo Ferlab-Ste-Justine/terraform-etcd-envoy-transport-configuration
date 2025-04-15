@@ -25,13 +25,17 @@ variable "load_balancer" {
         interval            = optional(string, "3s")
         healthy_threshold   = optional(number, 1)
         unhealthy_threshold = optional(number, 2)
-        http                = object({
+        http                = optional(object({
           enabled           = optional(bool, false)
           path              = optional(string, "/")
           status_code_range = object({
-            first = optional(number, 200)
-            last  = optional(number, 200)
+            start = optional(number, 200)
+            end  = optional(number, 200)
           })
+        }), {
+          enabled           = false
+          path              = ""
+          status_code_range = []
         })
       })
       tls_termination        = object({
@@ -40,7 +44,7 @@ variable "load_balancer" {
         cluster_ca_certificate     = string
         cluster_client_key         = string
         cluster_client_certificate = string
-        http_listener            = object({
+        http_listener            = optional(object({
           enabled                        = optional(bool, false)
           server_name                    = optional(string, "envoy")
           max_concurrent_streams         = optional(number, 128)
@@ -48,6 +52,14 @@ variable "load_balancer" {
           use_remote_address             = optional(bool, true)
           initial_connection_window_size = optional(number, 1048576)
           initial_stream_window_size     = optional(number, 65536) 
+        }), {
+          enabled                        = false
+          server_name                    = "envoy"
+          max_concurrent_streams         = 128
+          request_headers_timeout        = "10s"
+          use_remote_address             = true
+          initial_connection_window_size = 1048576
+          initial_stream_window_size     = 65536
         })
       })
     }))

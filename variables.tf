@@ -41,12 +41,12 @@ variable "load_balancer" {
           }
         })
       })
-      tls_termination        = object({
-        listener_certificate       = string
-        listener_key               = string
-        cluster_ca_certificate     = string
-        cluster_client_key         = string
-        cluster_client_certificate = string
+      tls_termination        = optional(object({
+        listener_certificate       = optional(string, "")
+        listener_key               = optional(string, "")
+        cluster_ca_certificate     = optional(string, "")
+        cluster_client_key         = optional(string, "")
+        cluster_client_certificate = optional(string, "")
         http_listener            = optional(object({
           enabled                        = optional(bool, false)
           server_name                    = optional(string, "envoy")
@@ -64,6 +64,21 @@ variable "load_balancer" {
           initial_connection_window_size = 1048576
           initial_stream_window_size     = 65536
         })
+      }), {
+        listener_certificate = ""
+        listener_key = ""
+        cluster_ca_certificate = ""
+        cluster_client_key = ""
+        cluster_client_certificate = ""
+        http_listener = {
+          enabled                        = false
+          server_name                    = "envoy"
+          max_concurrent_streams         = 128
+          request_headers_timeout        = "10s"
+          use_remote_address             = true
+          initial_connection_window_size = 1048576
+          initial_stream_window_size     = 65536
+        }
       })
     }))
     dns_servers = list(object({

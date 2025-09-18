@@ -41,7 +41,7 @@ This will be good enough as long as your configuration is not updated more than 
         - **status_code_range**: Range of acceptable response status codes
           - **start**: First acceptable response status code in the range
           - **end**: Last acceptable response status code in the range
-    - **tls_termination**: Configure service with tls termination using certificate/key files relative to envoy's execution path.
+    - **tls_termination**: Optionally configure service with tls termination using certificate/key files relative to envoy's execution path.
       - **listener_certificate**: Path of the certificate to present to clients
       - **listener_key**: Path of the private key to present to clients
       - **cluster_ca_certificate**: Path to an optional CA certificate validate the backend cluster's server certificate with if the connection on the backend is over tls.
